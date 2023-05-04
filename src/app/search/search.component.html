@@ -1,0 +1,86 @@
+<div class="container-fluid d-flex justify-content-center">
+    <div class="card w-50 shadow">
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-sm-12">
+                    <form [formGroup]="searchForm" (ngSubmit)="searchMeal()" class="d-flex">
+                        <div class="form-group w-100">
+                            <input type="text" class="form-control" formControlName="mealName"
+                                placeholder="Enter your meal name" />
+                        </div>
+                        <button type="submit" [disabled]="!searchForm.valid" class="btn btn-primary mx-2 ">
+                            Find
+                        </button>
+                    </form>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid d-flex justify-content-start">
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6" *ngIf="mealData">
+            
+                <ul class="d-flex flex-column nav nav-tabs ">
+                    <li class="nav-item nav-link" *ngFor="let m of mealData; let i=index" (click)="selectedMeal(i)" [ngClass]="{'active': i===activeTab}"> {{m.strMeal}}</li>
+                </ul>                
+            
+        </div>
+        <div class="col" *ngIf="recipeDetails">
+            <span *ngFor="let item of recipeDetails | keyvalue">
+                <ng-container *ngIf="item.key === 'strMealThumb'">
+                  <img [src]="item.value" class="img-thumbnail" alt="">
+                </ng-container>
+              </span>
+        </div>
+        
+    </div>
+</div> -->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- left section with less space -->
+      <div class="col-md-3" *ngIf="mealData" style="overflow-y: scroll; height: 500px;">        
+        <ul class="d-flex flex-column nav nav-tabs ">
+            <li class="nav-item nav-link" *ngFor="let m of mealData; let i=index" (click)="selectedMeal(i)" [ngClass]="{'active': i===activeTab}"> {{m.strMeal}}</li>
+        </ul> 
+      </div>
+
+       <!-- right section with large space -->
+      <div class="col-md-9 " *ngIf="recipeDetails" style="overflow-y: scroll; height: 500px;">  
+        
+        <div class="row">
+            <div class="col-md-8">
+                <h6 class="mt-3">Instructions:</h6>
+                <span *ngFor="let item of recipeDetails | keyvalue">
+                    <ng-container *ngIf="item.key === 'strInstructions'">
+                        <p class="lh-base">{{item.value}}</p>
+                      </ng-container>
+                </span>
+            </div>
+            <div class="col-md-4 d-flex flex-column justify-content-end">
+                <span *ngFor="let item of recipeDetails | keyvalue">
+                    <ng-container *ngIf="item.key === 'strMeal'">
+                        <h5>{{item.value}}</h5>
+                      </ng-container>
+                          
+            <ng-container *ngIf="item.key === 'strMealThumb'">
+                <img [src]="item.value" class="img-thumbnail d-flex mt-1" alt="">
+              </ng-container>
+             
+            </span>
+
+            </div>
+        </div>
+          
+       
+          
+       
+        
+      </div>
+    </div>
+  </div>
+  
