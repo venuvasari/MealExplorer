@@ -43,14 +43,14 @@
         <div class="row">
     
             <!-- left section with less space -->
-          <div class="col-md-3" *ngIf="mealData" style="overflow-y: scroll; height: 500px;">        
+          <div class="col-md-3" *ngIf="mealData" style="overflow-y: scroll; height: 400px;">        
             <ul class="d-flex flex-column nav nav-tabs ">
                 <li class="nav-item nav-link" *ngFor="let m of mealData; let i=index" (click)="selectedMeal(i)" [ngClass]="{'active': i===activeTab}"> {{m.strMeal}}</li>
             </ul> 
           </div>         
     
            <!-- right section with large space -->
-          <div class="col-md-9 " *ngIf="recipeDetails" style="overflow-y: scroll; height: 500px;">  
+          <div class="col-md-9 " *ngIf="recipeDetails" style="overflow-y: scroll; height: 400px;">  
             
             <div class="row">
                 <div class="col-md-8">
