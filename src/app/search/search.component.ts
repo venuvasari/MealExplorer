@@ -33,9 +33,16 @@ export class SearchComponent implements OnInit {
     const name: string = this.searchForm.value.mealName;
     console.log(this.searchForm.value.mealName);
     this.searchService.getMeals(name).subscribe((data) => {
-      this.mealData = data.meals;
+      // this.mealData = data.meals;
+      if (data.meals && data.meals.length > 0) {
+        this.mealData = data.meals;
+      } else {
+        alert('No meals found for this search! we will add '+ name +' recipe in the future for sure, Thank you');
+      }
     }); 
-
+    setTimeout(() => {
+      this.searchForm.reset();
+    }, 2000);
   }
 
   selectedMeal(index: number){
